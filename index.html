@@ -11,9 +11,14 @@
     <script src="lib/moment.js"></script>
     <!-- Utility functions-->
     <script src="lib/util.js"></script>
+    <!-- Selection logic -->
+    <script src="lib/selection.js"></script>
+
 
     <!-- Styles-->
     <link rel="stylesheet" type="text/css" href="styles/dropzone.css">
+    <link rel="stylesheet" type="text/css" href="styles/category.css">
+    <link rel="stylesheet" type="text/css" href="styles/expense.css">
 </head>
 <body>
 <!--Dropzone: todo: overlay full page-->
@@ -26,13 +31,16 @@
 
 
 <!-- Categories section -->
-<div id="section-categories section">
+<div class="section-categories section" id="section-categories">
     <h1>Categories</h1>
+
+    <div id="categories-root"></div>
 </div>
 
 <!-- Graphs section -->
-<div id="section-graphs section">
+<div class="section-graphs section" id="section-graphs">
     <h1>Graphs</h1>
+    <!--suppress CheckTagEmptyBody -->
     <canvas id="graph" width="400" height="400"></canvas>
 </div>
 
@@ -41,6 +49,10 @@
 <script src="src/domain/category.js"></script>
 <script src="src/domain/expense.js"></script>
 <script src="src/domain/dataset.js"></script>
+
+<!-- Dom classes-->
+<script src="src/dom/categoryElement.js"></script>
+<script src="src/dom/expenseElement.js"></script>
 
 <script src="src/dropzone.js"></script>
 <script src="src/parsing.js"></script>

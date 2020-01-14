@@ -1,0 +1,16 @@
+.category-element {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.category-element:hover {
+    box-shadow: 0 0 5px 0 black;
+}
+
+.category-children-wrapper {
+    padding-left: 25px;
+    padding-top: 5px;
+}

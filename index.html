@@ -6,12 +6,46 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Budget planner</title>
-    <!-- Include Chart.js -->
+    <!-- Include libs -->
     <script src="lib/Chart.bundle.min.js"></script>
+    <script src="lib/moment.js"></script>
+    <!-- Utility functions-->
+    <script src="lib/util.js"></script>
+
+    <!-- Styles-->
+    <link rel="stylesheet" type="text/css" href="styles/dropzone.css">
 </head>
 <body>
+<!--Dropzone: todo: overlay full page-->
+<div id="drop-area">
+    <form class="my-form">
+        <p>Upload .csv or .bacfg file</p>
+        <input type="file" id="fileElem" accept="*/*" onchange="handleFiles(this.files)">
+    </form>
+</div>
+
+
+<!-- Categories section -->
+<div id="section-categories section">
+    <h1>Categories</h1>
+</div>
+
+<!-- Graphs section -->
+<div id="section-graphs section">
+    <h1>Graphs</h1>
+    <canvas id="graph" width="400" height="400"></canvas>
+</div>
 
 </body>
+<!-- Classes -->
+<script src="src/domain/category.js"></script>
+<script src="src/domain/expense.js"></script>
+<script src="src/domain/dataset.js"></script>
+
+<script src="src/dropzone.js"></script>
+<script src="src/parsing.js"></script>
+<script src="src/readers.js"></script>
+<script src="src/graph.js"></script>
 <!-- Main application root -->
-<script src="main.js"></script>
+<script src="src/main.js"></script>
 </html>

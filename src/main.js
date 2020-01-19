@@ -23,7 +23,7 @@ updateExpenses = _expenses => {
     _expenses.forEach(e => {
         e.category = uncategorized
         const expenseElement = new ExpenseElement(e)
-        uncategorizedElement.addExpenseElement(new ExpenseElement(e))
+        uncategorizedElement.addExpenseElement(expenseElement)
         expenseElements.push(expenseElement)
     })
 
@@ -56,9 +56,44 @@ onCategoryRemoved = (categoryElement) => {
 
     categoryElement.wrapper.parentElement.removeChild(categoryElement.wrapper)
 
-
     const category = categoryElement.category
     const parent = category.parent || uncategorized
     expenses.forEach(e => e.category = parent)
     if (category.parent) category.parent.children.splice(category.parent.children.indexOf(category))
+}
+
+removeExpenses = (expenses) => {
+    expenses.forEach(el => uncategorizedElement.addExpenseElement(el))
+}
+
+switchExpenses = (expenseElements, categoryName) => {
+    let categoryElement = categoryElements.find(ce => ce.category.name === categoryName)
+
+    if (!categoryElement) {
+        categoryElement = new CategoryElement(new Category(categoryName, categoryRoot), categoriesRootElement)
+        categoryElements.push(categoryElement)
+        categoryElement.expand()
+    }
+
+    expenseElements.forEach(el => categoryElement.addExpenseElement(el))
+}
+
+
+const regexInput = document.getElementById('regex-input')
+const regexButton = document.getElementById('regex-button')
+
+regexInput.oninput = () => {
+    const regex = new RegExp(regexInput.value)
+    selectedExpenseElements = []
+    // const els = expenseElements.filter(el => el.expense.name.includes(regexInput.value))
+    const els = expenseElements.filter(el => regex.test( el.expense.name))
+    clearSelection()
+    els.forEach(ee => ee.select(true))
+}
+
+regexButton.onclick = e => {
+    e.stopPropagation()
+    expenseContext.hidden = false
+    expenseContext.style.left = e.pageX + 'px';
+    expenseContext.style.top = e.pageY + 'px';
 }

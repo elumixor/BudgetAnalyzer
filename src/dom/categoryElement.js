@@ -65,13 +65,14 @@ class CategoryElement {
 
         this.element.oncontextmenu = e => {
             e.preventDefault();
-            categoryContextMenu.show(e.x, e.y, this)
+            categoryContextMenu.show(e.pageX, e.pageY, this)
             return false
         }
     }
 
     addExpenseElement(expenseElement) {
         this.expensesContainer.append(expenseElement.element)
+        expenseElement.expense.category = this.category
     }
 
     expand() {

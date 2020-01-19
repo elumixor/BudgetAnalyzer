@@ -30,9 +30,5 @@
 }
 
 .category-button-add {
-    display: inline-block;
-    padding: 10px;
     margin: 7px;
-    color: white;
-    background-color: black;
 }

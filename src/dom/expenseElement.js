@@ -27,15 +27,30 @@ class ExpenseElement {
         return [element, dateElement, moneyElement, nameElement]
     }
 
+    select(add = false) {
+        console.log('selecting')
+        selectElement(this.element, add)
+
+        if (!add) {
+            selectedExpenseElements = [this]
+        } else {
+            if (selectedExpenseElements.includes(this)) {
+                selectedExpenseElements.splice(selectedExpenseElements.indexOf(this), 1)
+            } else selectedExpenseElements.push(this)
+        }
+    }
+
     configureClick() {
         this.element.onclick = (e) => {
-            // todo: multiple selection
-            selectElement(this.element)
+            this.select(e.ctrlKey)
+
         }
 
         this.element.oncontextmenu = e => {
             e.preventDefault();
-            // expenseContextMenu.show(e.x, e.y)
+            expenseContext.hidden = false
+            expenseContext.style.left = e.pageX + 'px';
+            expenseContext.style.top = e.pageY + 'px';
             return false
         }
 
@@ -43,4 +58,85 @@ class ExpenseElement {
 
 }
 
-// expenseContextMenu = new ContextMenu()
+const expenseContext = document.getElementById('expense-context')
+const expenseContextCategories = document.getElementById('expense-context-categories')
+const contextCategoriesRoot = document.getElementById('context-categories-root')
+const inputElement = document.getElementById('context-input')
+
+document.addEventListener('click', e => {
+    if (expenseContext.hidden) return
+    let targetElement = e.target // clicked element
+
+    do {
+        if (targetElement === expenseContext) {
+            // This is a click inside. Do nothing, just return.
+            return
+        }
+        // Go up the DOM
+        targetElement = targetElement.parentNode
+    } while (targetElement)
+
+    // This is a click outside.
+    expenseContext.hidden = true
+})
+
+let selectedExpenseElements = []
+
+let removeExpenses = () => {
+}
+
+let switchExpenses = () => {
+}
+
+function displayExpenseCategoryContext() {
+    expenseContextCategories.style.left = expenseContext.style.left
+    expenseContextCategories.style.top = expenseContext.style.top
+
+    expenseContext.hidden = true
+    expenseContextCategories.hidden = false
+}
+
+function onRemove() {
+    removeExpenses(selectedExpenseElements)
+}
+
+expenseContextCategories.onsubmit = e => {
+    e.preventDefault()
+    const name = inputElement.value
+    expenseContextCategories.hidden = true
+    switchExpenses(selectedExpenseElements, name)
+    return false
+}
+
+document.addEventListener('click', e => {
+    if (expenseContext.hidden) return
+    let targetElement = e.target // clicked element
+
+    do {
+        if (targetElement === expenseContext) {
+            // This is a click inside. Do nothing, just return.
+            return
+        }
+        // Go up the DOM
+        targetElement = targetElement.parentNode
+    } while (targetElement)
+
+    // This is a click outside.
+    expenseContext.hidden = true
+})
+document.addEventListener('click', e => {
+    if (expenseContextCategories.hidden) return
+    let targetElement = e.target // clicked element
+
+    do {
+        if (targetElement === expenseContextCategories || targetElement === expenseContext) {
+            // This is a click inside. Do nothing, just return.
+            return
+        }
+        // Go up the DOM
+        targetElement = targetElement.parentNode
+    } while (targetElement)
+
+    // This is a click outside.
+    expenseContextCategories.hidden = true
+})

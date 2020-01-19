@@ -81,5 +81,4 @@ function updateGraph(datasets) {
 
 
     graph.update();
-    console.log(gdata.datasets)
 }

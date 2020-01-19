@@ -2,7 +2,9 @@ class Category {
     constructor(name = "Unnamed category", parent = null, color = randomHSL(), children = []) {
         this.name = name
         this.color = color
-        this.parent = parent
+        this.parent = null
+        if (parent) parent.addChild(this)
+        
         this.children = children
     }
 

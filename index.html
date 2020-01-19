@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Budget planner</title>
+    <title>Budget Analyzer</title>
     <!-- Include libs -->
     <script src="lib/Chart.bundle.min.js"></script>
     <script src="lib/moment.js"></script>
@@ -17,6 +17,7 @@
     <script src="lib/dropzone.js" defer></script>
 
     <!-- Styles-->
+    <link rel="stylesheet" type="text/css" href="styles/common.css">
     <link rel="stylesheet" type="text/css" href="styles/dropzone.css">
     <link rel="stylesheet" type="text/css" href="styles/category.css">
     <link rel="stylesheet" type="text/css" href="styles/expense.css">
@@ -37,7 +38,13 @@
 <div class="section-categories section" id="section-categories">
     <h1>Categories</h1>
 
-    <div class="category-button-add" id="add-category" onclick="onCategoryAdded()">Add Category</div>
+    <!-- Regex section -->
+    <div>
+        <input id="regex-input" type="text">
+        <button id="regex-button">Select</button>
+    </div>
+
+    <div class="category-button-add button" id="add-category" onclick="onCategoryAdded()">Add Category</div>
     <div class="category-drop-area" id="root-drop" hidden>Drop here</div>
     <div id="categories-root"></div>
 </div>
@@ -48,6 +55,18 @@
     <!--suppress CheckTagEmptyBody -->
     <canvas id="graph" width="400" height="400"></canvas>
 </div>
+
+<!-- Context menus -->
+<div class="context-menu" id="expense-context" hidden>
+    <div class="" onclick="displayExpenseCategoryContext()">Move to category</div>
+    <div class="" onclick="onRemove()">Remove</div>
+</div>
+
+<form class="context-menu" id="expense-context-categories" hidden>
+    <input id="context-input" type="text">
+    <input class="button" type="submit" value="Confirm"/>
+    <div id="context-categories-root"></div>
+</form>
 
 </body>
 <!-- Classes -->

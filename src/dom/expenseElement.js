@@ -14,11 +14,11 @@ class ExpenseElement {
 
     createElement() {
         // todo: insert child in order, based on date of expense
-        const element = createDiv('expense')
+        const element = createElement('div', 'expense', null)
 
-        const dateElement = createDiv('expense-date expense-field', element)
-        const moneyElement = createDiv('expense-money expense-field', element)
-        const nameElement = createDiv('expense-name expense-field', element)
+        const dateElement = createElement('div', 'expense-date expense-field', element)
+        const moneyElement = createElement('div', 'expense-money expense-field', element)
+        const nameElement = createElement('div', 'expense-name expense-field', element)
 
         dateElement.innerText = this.expense.date.format("DD.MM.YYYY")
         moneyElement.innerText = this.expense.money
@@ -35,10 +35,12 @@ class ExpenseElement {
 
         this.element.oncontextmenu = e => {
             e.preventDefault();
-            // todo: context on expense
+            // expenseContextMenu.show(e.x, e.y)
             return false
         }
 
     }
 
 }
+
+// expenseContextMenu = new ContextMenu()

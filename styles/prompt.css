@@ -1,0 +1,29 @@
+.prompt-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: gray;
+    box-shadow: 0 -5px 15px 5px black;
+}
+
+.prompt-body > * {
+    display: inline-block;
+}
+
+.prompt-button {
+    float: right;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.prompt-input {
+    border-radius: 5px;
+    width: calc(100% - (100px * 2 + 10px * 7));
+    margin: 10px;
+}

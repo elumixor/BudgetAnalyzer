@@ -1,0 +1,21 @@
+.context-menu {
+    position: absolute;
+    min-width: 150px;
+
+    border-radius: 10px;
+    background-color: #c7c7c7;
+    box-shadow: 0 0 5px 0 black;
+
+    min-height: 10px;
+    overflow: hidden;
+}
+
+.context-menu > * {
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+.context-menu > *:hover {
+    background-color: #75aeb2;
+}

@@ -1,5 +1,5 @@
 class Category {
-    constructor(name = "Unnamed category", color = randomHSL(), parent = null, children = []) {
+    constructor(name = "Unnamed category", parent = null, color = randomHSL(), children = []) {
         this.name = name
         this.color = color
         this.parent = parent

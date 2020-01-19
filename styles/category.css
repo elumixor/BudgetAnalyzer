@@ -4,6 +4,9 @@
     margin: 5px;
     border-radius: 5px;
     cursor: pointer;
+
+    transition: all 100ms ease-in;
+    user-select: none;
 }
 
 .category-element:hover {
@@ -13,4 +16,23 @@
 .category-children-wrapper {
     padding-left: 25px;
     padding-top: 5px;
+}
+
+.category-drop-area {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    border: 2px dashed grey;
+}
+
+.category-drop-area[hidden] {
+    display: none;
+}
+
+.category-button-add {
+    display: inline-block;
+    padding: 10px;
+    margin: 7px;
+    color: white;
+    background-color: black;
 }

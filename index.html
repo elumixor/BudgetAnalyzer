@@ -9,16 +9,19 @@
     <!-- Include libs -->
     <script src="lib/Chart.bundle.min.js"></script>
     <script src="lib/moment.js"></script>
-    <!-- Utility functions-->
-    <script src="lib/util.js"></script>
-    <!-- Selection logic -->
-    <script src="lib/selection.js"></script>
 
+    <script src="lib/util.js"></script>
+    <script src="lib/selection.js"></script>
+    <script src="lib/contextMenu.js"></script>
+    <script src="lib/prompt.js" defer></script>
+    <script src="lib/dropzone.js" defer></script>
 
     <!-- Styles-->
     <link rel="stylesheet" type="text/css" href="styles/dropzone.css">
     <link rel="stylesheet" type="text/css" href="styles/category.css">
     <link rel="stylesheet" type="text/css" href="styles/expense.css">
+    <link rel="stylesheet" type="text/css" href="styles/contextMenu.css">
+    <link rel="stylesheet" type="text/css" href="styles/prompt.css">
 </head>
 <body>
 <!--Dropzone: todo: overlay full page-->
@@ -34,6 +37,8 @@
 <div class="section-categories section" id="section-categories">
     <h1>Categories</h1>
 
+    <div class="category-button-add" id="add-category" onclick="onCategoryAdded()">Add Category</div>
+    <div class="category-drop-area" id="root-drop" hidden>Drop here</div>
     <div id="categories-root"></div>
 </div>
 
@@ -54,10 +59,9 @@
 <script src="src/dom/categoryElement.js"></script>
 <script src="src/dom/expenseElement.js"></script>
 
-<script src="src/dropzone.js"></script>
 <script src="src/parsing.js"></script>
 <script src="src/readers.js"></script>
 <script src="src/graph.js"></script>
 <!-- Main application root -->
-<script src="src/main.js"></script>
+<script src="src/main.js" defer></script>
 </html>

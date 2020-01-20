@@ -28,7 +28,6 @@ class ExpenseElement {
     }
 
     select(add = false) {
-        console.log('selecting')
         selectElement(this.element, add)
 
         if (!add) {

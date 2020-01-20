@@ -49,14 +49,17 @@ const graph = new Chart(ctx, {
                 type: 'time',
                 time: {
                     unit: 'month'
-                }
+                },
+                stacked: true
+
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
                     labelString: 'Spent'
-                }
+                },
+                stacked: true
             }]
         }
     }
@@ -67,6 +70,21 @@ function updateGraph(datasets) {
     // dataset should contain an array of points where
     //  x -> date
     //  y -> total money spent
+
+    const firstsLasts = datasets.map(dataset => ({first: dataset.data[0], last: dataset.data[dataset.data.length - 1]}))
+    const first = firstsLasts.sort((a, b) => a.first.t < b.first.t ? -1 : 1)[0].first
+    const last = firstsLasts.sort((a, b) => a.last.t > b.last.t ? -1 : 1)[0].last
+
+    datasets.forEach(ds => {
+        ds.data.unshift({t: first.t, y: 0})
+        // console.log(ds.data[ds.data.length - 1])
+        ds.data.push({t: last.t, y: ds.data[ds.data.length - 1].y})
+    })
+
+    let sumds = []
+    const sets = datasets.map(ds => {
+
+    })
 
     const gdata = graph.data
     gdata.datasets = datasets.map(dataset => {

@@ -28,10 +28,8 @@ updateExpenses = _expenses => {
     })
 
     const datasets = constructDatasets(selectedRoot, expenses)
-
-    uncategorizedElement.expand()
-
     updateGraph(datasets)
+    uncategorizedElement.expand()
 }
 
 
@@ -64,6 +62,9 @@ onCategoryRemoved = (categoryElement) => {
 
 removeExpenses = (expenses) => {
     expenses.forEach(el => uncategorizedElement.addExpenseElement(el))
+
+    const datasets = constructDatasets(selectedRoot, expenses)
+    updateGraph(datasets)
 }
 
 switchExpenses = (expenseElements, categoryName) => {
@@ -76,24 +77,29 @@ switchExpenses = (expenseElements, categoryName) => {
     }
 
     expenseElements.forEach(el => categoryElement.addExpenseElement(el))
+
+    const datasets = constructDatasets(selectedRoot, expenses)
+    updateGraph(datasets)
 }
 
 
 const regexInput = document.getElementById('regex-input')
-const regexButton = document.getElementById('regex-button')
+const regexForm = document.getElementById('regex-form')
 
 regexInput.oninput = () => {
     const regex = new RegExp(regexInput.value)
     selectedExpenseElements = []
     // const els = expenseElements.filter(el => el.expense.name.includes(regexInput.value))
-    const els = expenseElements.filter(el => regex.test( el.expense.name))
+    const els = expenseElements.filter(el => regex.test(el.expense.name))
     clearSelection()
     els.forEach(ee => ee.select(true))
 }
 
-regexButton.onclick = e => {
-    e.stopPropagation()
+regexForm.onsubmit = e => {
+    e.preventDefault()
     expenseContext.hidden = false
-    expenseContext.style.left = e.pageX + 'px';
-    expenseContext.style.top = e.pageY + 'px';
+
+    expenseContext.style.left = regexInput.offsetLeft + 'px';
+    expenseContext.style.top = regexInput.offsetTop + 'px';
+    // return false
 }
